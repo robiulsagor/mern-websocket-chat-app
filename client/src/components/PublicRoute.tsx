@@ -1,15 +1,15 @@
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
-const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+const PublicRoute = ({ children }: { children: React.ReactNode }) => {
     const { user } = useAuth();
 
-    if (!user) {
-        return <Navigate to="/login" replace />;
+    if (user) {
+        return <Navigate to="/" replace />;
     }
     return (
         <div>{children}</div>
     )
 }
 
-export default ProtectedRoute
+export default PublicRoute
