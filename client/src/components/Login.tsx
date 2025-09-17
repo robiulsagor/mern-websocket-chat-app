@@ -18,15 +18,9 @@ const Login = () => {
     }
 
     return (
-        <div className="flex bg-white p-10 rounded-lg  gap-5 min-h-[400px] min-w-[800px]">
-            <div className="flex-1 flex flex-col justify-center items-center border-r border-r-slate-300 pr-10">
-                <div className="text-center space-y-5">
-                    <h2 className="text-3xl ">Beauty Chat</h2>
-                    Welcome again!
-                </div>
-            </div>
+        <div className="flex-1 h-full">
 
-            <form onSubmit={handleSubmit(onSubmit)} className="flex-1 space-y-5 flex flex-col justify-center">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 flex flex-col justify-center ">
                 <div>
 
                     <input
@@ -45,7 +39,7 @@ const Login = () => {
 
                 <button className="w-full bg-slate-900 text-white p-2 rounded hover:bg-slate-700 transition  cursor-pointer">Sign In</button>
 
-                <p>Don't have an account? <span className="text-blue-500 hover:underline cursor-pointer">Sign Up</span></p>
+                <p className="text-sm">Don't have an account? <span className="text-blue-500 hover:underline cursor-pointer">Sign Up</span></p>
             </form>
         </div>
     )
