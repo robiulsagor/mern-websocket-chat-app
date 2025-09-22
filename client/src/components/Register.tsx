@@ -23,7 +23,7 @@ const Register = () => {
 
     return (
         <main className="bg-slate-200 h-screen flex justify-center items-center">
-            <section className={`flex items-center bg-white p-10 rounded-lg  gap-5 min-h-[400px] min-w-[800px]`}>
+            <section className={`flex flex-col md:flex-row items-center bg-white p-10 rounded-lg  gap-5 min-h-[400px] md:min-w-[800px]`}>
                 <AnimatePresence>
                     <motion.div key="text" initial={{ opacity: 0, x: 100 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: .5 }}
                         className="flex-1 flex flex-col justify-center items-center pr-10">
