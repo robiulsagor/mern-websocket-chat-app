@@ -18,6 +18,7 @@ import { Check, MailCheck } from "lucide-react"
 import { useState } from "react"
 import { formatTime } from "../../utils/formatTime"
 import useCountdown from "@/hooks/useCountdown";
+import { log } from "console";
 
 const TIMER_DURATION = 5; // 2 minutes
 
@@ -48,8 +49,15 @@ const EmailVerify = () => {
         } else {
             setError("");
             setLoading(true);
+            console.log("Submitting OTP:", otp);
+
+            setTimeout(() => {
+                setLoading(false);
+                console.log(Math.random() < 0.5 ? alert("OTP verified successfully!") :
+                    setError("Invalid OTP, please try again."));
+
+            }, 2000);
         }
-        console.log("Submitted OTP:", otp);
         // Add your OTP submission logic here
     }
 
