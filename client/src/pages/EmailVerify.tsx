@@ -18,7 +18,6 @@ import { Check, MailCheck } from "lucide-react"
 import { useState } from "react"
 import { formatTime } from "../../utils/formatTime"
 import useCountdown from "@/hooks/useCountdown";
-import { log } from "console";
 
 const TIMER_DURATION = 5; // 2 minutes
 
