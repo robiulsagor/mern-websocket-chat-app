@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import AuthLayout from "./AuthLayout";
-import InputField from "./InputField";
+import AuthLayout from "../components/AuthLayout";
+import InputField from "../components/InputField";
+
 
 type FormValues = {
     name: string
