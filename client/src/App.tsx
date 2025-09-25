@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home"
 import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
-import Login from "./components/Login";
-import Register from "./components/Register";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   return (
