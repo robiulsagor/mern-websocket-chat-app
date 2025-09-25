@@ -29,6 +29,7 @@ const Register = () => {
 
     const onSubmit = (data: FormValues) => {
         console.log(data);
+        navigate("/email-verify")
     }
 
     return (
