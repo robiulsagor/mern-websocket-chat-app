@@ -1,11 +1,13 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import AuthLayout from "./AuthLayout";
+import InputField from "./InputField";
 
 type FormValues = {
     name: string
     email: string;
     password: string;
+    confirmPassword: string;
 }
 
 const Register = () => {
@@ -17,6 +19,13 @@ const Register = () => {
         formState: { errors }
     } = useForm<FormValues>();
 
+    const fields = [
+        { name: "name", type: "text", placeholder: "Name" },
+        { name: "email", type: "email", placeholder: "Email" },
+        { name: "password", type: "password", placeholder: "Password" },
+        { name: "confirmPassword", type: "password", placeholder: "Confirm Password" },
+    ] as const;
+
     const onSubmit = (data: FormValues) => {
         console.log(data);
     }
@@ -26,25 +35,19 @@ const Register = () => {
 
             {/* Register form begins */}
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 ">
-                <div>
-                    <input
-                        {...register("name", { required: "Name is required" })}
-                        type="text" placeholder="Name" className="w-full bg-slate-100 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                    {errors.name && <p className="mt-1 ml-1 text-red-700 text-sm">{errors.name.message}</p>}
-                </div>
-                <div>
-                    <input
-                        {...register("email", { required: "Email is required" })}
-                        type="email" placeholder="Email" className="w-full bg-slate-100 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                    {errors.email && <p className="mt-1 ml-1 text-red-700 text-sm">{errors.email.message}</p>}
-                </div>
-                <div>
-                    <input
-                        {...register("password", { required: "Password is required" })}
-                        type="password" placeholder="Password" className="w-full bg-slate-100 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                    {errors.password && <p className="mt-1 ml-1 text-red-700 text-sm">{errors.password.message}</p>}
-                </div>
-
+                {
+                    fields.map((field) => (
+                        <div key={field.name}>
+                            <InputField
+                                type={field.type}
+                                placeholder={field.placeholder}
+                                register={register}
+                                name={field.name}
+                                error={errors[field.name as keyof FormValues]?.message as string}
+                            />
+                        </div>
+                    ))
+                }
 
                 <button className="w-full bg-slate-900 text-white p-2 rounded hover:bg-slate-700 transition  cursor-pointer">Sign Up</button>
 

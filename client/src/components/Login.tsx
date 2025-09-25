@@ -17,6 +17,11 @@ const Login = () => {
         formState: { errors }
     } = useForm<FormValues>();
 
+    const fields = [
+        { name: "email", type: "email", placeholder: "Email" },
+        { name: "password", type: "password", placeholder: "Password" },
+    ] as const;
+
     const onSubmit = (data: FormValues) => {
         console.log(data);
     }
@@ -26,25 +31,19 @@ const Login = () => {
 
             {/* login form begins */}
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-5  ">
-                <div>
-                    <InputField
-                        type="email"
-                        placeholder="Email"
-                        register={register}
-                        name="email"
-                        error={errors.email?.message as string}
-                    />
-                </div>
-                <div>
-
-                    <InputField
-                        type="password"
-                        placeholder="Password"
-                        register={register}
-                        name="password"
-                        error={errors.password?.message as string}
-                    />
-                </div>
+                {
+                    fields.map((field) => (
+                        <div key={field.name}>
+                            <InputField
+                                type={field.type}
+                                placeholder={field.placeholder}
+                                register={register}
+                                name={field.name}
+                                error={errors[field.name as keyof FormValues]?.message as string}
+                            />
+                        </div>
+                    ))
+                }
 
                 <p className="text-right text-sm hover:underline cursor-pointer">Forgot password?</p>
 
