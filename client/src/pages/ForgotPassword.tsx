@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet";
 
 import { AnimatePresence, motion } from "motion/react";
 import {
@@ -54,6 +54,7 @@ const ForgotPassword = () => {
                     setError("A valid email is required");
                 } else {
                     setSuccess(true);
+                    setStep(2)
                 }
                 setLoading(false);
             }, 1000);
