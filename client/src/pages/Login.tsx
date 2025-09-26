@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import AuthLayout from "../components/AuthLayout";
 import InputField from "../components/InputField";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet";
 
 type FormValues = {
     email: string;
