@@ -19,7 +19,7 @@ import { useEffect, useState } from "react";
 import useCountdown from "@/hooks/useCountdown";
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
 import { Button } from "./ui/button";
-import LoadingButton from "./LoadingButton";
+import LoadingButton from "./LoadingButton.tsx";
 import { formatTime } from "../../utils/formatTime";
 
 const TIMER_DURATION = 120; // 2 minutes
