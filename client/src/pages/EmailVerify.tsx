@@ -20,6 +20,8 @@ import { useEffect, useState } from "react"
 import { formatTime } from "../../utils/formatTime"
 import useCountdown from "@/hooks/useCountdown";
 import { useNavigate } from "react-router-dom";
+import LoadingButton from "@/components/LoadingButton";
+import { Button } from "@/components/ui/button";
 
 const TIMER_DURATION = 120; // 2 minutes
 
@@ -112,7 +114,11 @@ const EmailVerify = () => {
                                     <InputOTPSlot index={5} />
                                 </InputOTPGroup>
                             </InputOTP>
-                            {error && <p className="text-sm text-red-600 mt-2 flex gap-1 items-center"><X className="h-5 w-5" /> {error}</p>}
+
+                            <AnimatePresence>
+                                {error && <motion.p initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.3 }}
+                                    className="text-sm text-red-600 mt-2 flex gap-1 items-center"><X className="h-5 w-5" /> {error}</motion.p>}
+                            </AnimatePresence>
 
                         </CardContent>
                         <CardFooter className="flex flex-col gap-4">
@@ -123,17 +129,10 @@ const EmailVerify = () => {
                                             <motion.p className="text-sm text-green-600 mb-2 flex items-center justify-center gap-1" initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.3 }}>
                                                 <Check /> Email verified successfully! Redirecting...</motion.p>
                                         ) : (
-                                            <button onClick={() => submitOtp(otp)} className="mx-auto bg-slate-800 disabled:bg-slate-800 disabled:opacity-80 text-white p-3 px-5 w-1/2 rounded-lg hover:bg-slate-700 transition cursor-pointer text-sm flex items-center justify-center gap-2
-                        disabled:cursor-not-allowed "
-                                                disabled={loading} >
-                                                {loading && (
-                                                    <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-                                                    </svg>
-                                                )}
-                                                {loading ? "Verifying..." : "Verify"}
-                                            </button>
+                                            <Button onClick={() => submitOtp(otp)} disabled={loading}
+                                                className="w-1/2">
+                                                {loading ? <LoadingButton /> : "Verify"}
+                                            </Button>
                                         )
                                 }
                             </div>
