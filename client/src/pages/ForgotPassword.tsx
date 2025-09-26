@@ -16,6 +16,8 @@ import { useNavigate } from "react-router-dom";
 import LoadingButton from "@/components/LoadingButton";
 import OtpVerify from "@/components/OtpVerify";
 
+import { Helmet } from "react-helmet";
+
 const ForgotPassword = () => {
     const [step, setStep] = useState<1 | 2 | 3>(2);
     const navigate = useNavigate()
@@ -61,7 +63,10 @@ const ForgotPassword = () => {
 
     return (
         <>
-
+            <Helmet>
+                <title>Reset Password | Beauty Chat</title>
+                <meta name="description" content="Reset your password" />
+            </Helmet>
             <section className="min-h-screen flex items-center justify-center bg-gray-100 p-2">
 
                 {
