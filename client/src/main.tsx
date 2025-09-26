@@ -3,15 +3,15 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from "./App.tsx";
 import { AuthProvider } from './context/AuthProvider.tsx';
-// import { HelmetProvider } from "react-helmet-async";
+// import { HeadProvider } from "react-head";
 
 
 createRoot(document.getElementById('root')!).render(
   // <StrictMode>
-  // <HelmetProvider>
+  // <HeadProvider>
   <AuthProvider>
     <App />
   </AuthProvider>
-  // </HelmetProvider>
+  // </HeadProvider>
   // </StrictMode >,
 )

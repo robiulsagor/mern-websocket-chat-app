@@ -1,5 +1,3 @@
-import { Helmet } from "react-helmet";
-
 import { AnimatePresence, motion } from "motion/react";
 import {
     Card,
@@ -63,10 +61,7 @@ const ForgotPassword = () => {
 
     return (
         <>
-            <Helmet>
-                <title>Forgot Password | Beauty Chat</title>
-                <meta name="description" content="Reset your password" />
-            </Helmet>
+
             <section className="min-h-screen flex items-center justify-center bg-gray-100 p-2">
 
                 {

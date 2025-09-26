@@ -2,8 +2,6 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import AuthLayout from "../components/AuthLayout";
 import InputField from "../components/InputField";
-import { Helmet } from "react-helmet";
-
 
 type FormValues = {
     name: string
@@ -35,10 +33,6 @@ const Register = () => {
 
     return (
         <>
-            <Helmet>
-                <title>Register | Beauty Chat</title>
-                <meta name="description" content="Create a new account" />
-            </Helmet>
 
             <AuthLayout title="Beauty Chat" sideContent="Welcome back!" >
 

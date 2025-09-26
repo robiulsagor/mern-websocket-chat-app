@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import AuthLayout from "../components/AuthLayout";
 import InputField from "../components/InputField";
+// import { Title, Meta } from "react-head";
 import { Helmet } from "react-helmet";
 
 type FormValues = {
@@ -29,10 +30,14 @@ const Login = () => {
 
     return (
         <>
+
+            {/* <Title>Login | Beauty Chat</Title>
+            <Meta name="description" content="Login to your account" /> */}
+
             <Helmet>
                 <title>Login | Beauty Chat</title>
-                <meta name="description" content="Login to your account" />
             </Helmet>
+
             <AuthLayout title="Beauty Chat" sideContent="Welcome back!" >
 
                 {/* login form begins */}
