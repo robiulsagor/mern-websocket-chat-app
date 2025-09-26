@@ -96,7 +96,7 @@ const OtpVerify = () => {
             {success ? (
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                     <Check className="h-8 w-8 text-green-600 mx-auto mb-2" />
-                    <p className="text-green-600 font-semibold text-center">Email verified!</p>
+                    <p className="text-green-600 font-semibold text-center">Email verified! </p>
                     <p className="text-gray-600 text-center text-sm">Redirecting...</p>
                 </motion.div>
             ) : (
