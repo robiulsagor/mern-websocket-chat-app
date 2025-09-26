@@ -25,7 +25,7 @@ import { formatTime } from "../../utils/formatTime";
 const TIMER_DURATION = 120; // 2 minutes
 
 
-const OtpVerify = () => {
+const OtpVerify = ({ email }: { email?: string | undefined }) => {
     const navigate = useNavigate()
     const [sentCode, setSentCode] = useState(false);
     const [error, setError] = useState("");
@@ -82,15 +82,17 @@ const OtpVerify = () => {
     }, [success, navigate]);
 
 
+
+
     return (
         <Card className=" w-full max-w-[500px] min-h-[300px]">
             <CardHeader>
                 <CardTitle><div className="flex items-center gap-2">
                     <MailCheck /> <span className="text-xl"> Check your email</span></div></CardTitle>
                 <CardDescription>
-                    Enter the verification code sent to: sag****@gmail.com
+                    Enter the verification code sent to: <span className="font-semibold"> {email}</span>
                 </CardDescription>
-                <CardAction><X onClick={() => navigate('/register')} className="h-6 w-6 text-gray-500 cursor-pointer hover:text-gray-800" /></CardAction>
+                <CardAction><X onClick={() => navigate(-1)} className="h-6 w-6 text-gray-500 cursor-pointer hover:text-gray-800" /></CardAction>
             </CardHeader>
 
             {success ? (

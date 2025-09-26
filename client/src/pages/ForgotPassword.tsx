@@ -55,7 +55,7 @@ const ForgotPassword = () => {
                                 />
                             )
                                 : step === 2 ? (
-                                    <OtpVerify email={email} page="forgot-password" />
+                                    <OtpVerify email={email} />
                                 )
                                     : (
                                         <h2>Password Reset form</h2>
