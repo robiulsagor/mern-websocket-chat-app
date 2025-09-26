@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card"
 import { Lock, Mail, X } from "lucide-react";
 import LoadingButton from "../LoadingButton";
-import { validateEmail } from "utils/validateEmail";
+import { validateEmail } from "../../../utils/validateEmail";
 
 type Props = {
     goBack: () => void;
