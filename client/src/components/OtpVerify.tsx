@@ -25,7 +25,7 @@ import { formatTime } from "../../utils/formatTime";
 const TIMER_DURATION = 120; // 2 minutes
 
 
-const OtpVerify = ({ email }: { email?: string | undefined }) => {
+const OtpVerify = ({ email, onSuccess }: { email?: string | undefined, onSuccess?: () => void }) => {
     const navigate = useNavigate()
     const [sentCode, setSentCode] = useState(false);
     const [error, setError] = useState("");
@@ -73,7 +73,8 @@ const OtpVerify = ({ email }: { email?: string | undefined }) => {
         if (success) {
             const timer = setTimeout(() => {
                 setSuccess(false);
-                navigate('/')
+                // navigate('/')
+                if (onSuccess) onSuccess();
                 setOtp("");
                 // For demo purposes, we reset the state instead of navigating  
             }, 3000);
