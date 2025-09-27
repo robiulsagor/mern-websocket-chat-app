@@ -73,14 +73,13 @@ const OtpVerify = ({ email, onSuccess }: { email?: string | undefined, onSuccess
         if (success) {
             const timer = setTimeout(() => {
                 setSuccess(false);
-                // navigate('/')
                 if (onSuccess) onSuccess();
                 setOtp("");
                 // For demo purposes, we reset the state instead of navigating  
             }, 3000);
             return () => clearTimeout(timer);
         }
-    }, [success, navigate]);
+    }, [success, onSuccess]);
 
 
 
