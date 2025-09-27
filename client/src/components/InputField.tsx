@@ -16,7 +16,7 @@ const InputField = <T extends FieldValues>({ type, placeholder, register, name, 
                 {...register(name, { required: `${placeholder} is required` })}
                 type={type}
                 placeholder={placeholder}
-                className="w-full bg-slate-100 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <AnimatePresence>
                 {error && <motion.p initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.2 }}
