@@ -5,6 +5,7 @@ import OtpVerify from "@/components/OtpVerify";
 
 import { Helmet } from "react-helmet";
 import StepEmail from "@/components/forgot-password/StepEmail";
+import StepResetPassword from "@/components/forgot-password/StepResetPassword";
 
 const ForgotPassword = () => {
     const [step, setStep] = useState<1 | 2 | 3>(1);
@@ -37,28 +38,31 @@ const ForgotPassword = () => {
                         className="min-h-screen flex items-center justify-center bg-gray-100 p-2">
 
                         {
-                            step === 1 ? (
-                                <StepEmail
-                                    goBack={handleGoBack}
-                                    loading={loading}
-                                    error={error}
-                                    setError={setError}
-                                    success={success}
-                                    setSuccess={setSuccess}
-                                    invalidEmail={invalidEmail}
-                                    setInvalidEmail={setInvalidEmail}
-                                    email={email}
-                                    setEmail={setEmail}
-                                    setLoading={setLoading}
-                                    setStep={setStep}
-                                    key={"step-email"}
-                                />
-                            )
-                                : step === 2 ? (
-                                    <OtpVerify email={email} />
-                                )
-                                    : (
-                                        <h2>Password Reset form</h2>
+                            step === 1 ?
+                                (
+                                    <StepEmail
+                                        goBack={handleGoBack}
+                                        loading={loading}
+                                        error={error}
+                                        setError={setError}
+                                        success={success}
+                                        setSuccess={setSuccess}
+                                        invalidEmail={invalidEmail}
+                                        setInvalidEmail={setInvalidEmail}
+                                        email={email}
+                                        setEmail={setEmail}
+                                        setLoading={setLoading}
+                                        setStep={setStep}
+                                        key={"step-email"}
+                                    />
+                                ) :
+                                step === 2 ?
+                                    (
+                                        <OtpVerify email={email} onSuccess={() => setStep(3)} />
+                                    )
+                                    : step === 3 &&
+                                    (
+                                        <StepResetPassword />
                                     )
                         }
 
