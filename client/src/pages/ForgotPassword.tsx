@@ -8,7 +8,7 @@ import StepEmail from "@/components/forgot-password/StepEmail";
 import StepResetPassword from "@/components/forgot-password/StepResetPassword";
 
 const ForgotPassword = () => {
-    const [step, setStep] = useState<1 | 2 | 3>(1);
+    const [step, setStep] = useState<1 | 2 | 3>(3);
     const navigate = useNavigate()
     const [email, setEmail] = useState("");
     const [error, setError] = useState("");

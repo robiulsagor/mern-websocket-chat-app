@@ -14,6 +14,7 @@ import { AnimatePresence, motion } from "motion/react"
 import LoadingButton from "../LoadingButton"
 import { useEffect, useState } from "react"
 import SuccessMessage from "../SuccessMessage"
+import axios from "axios"
 
 type ResetPasswordInputs = {
     password: string;
@@ -25,29 +26,35 @@ const StepResetPassword = () => {
         register,
         handleSubmit,
         formState:
-        { errors
+        { errors, isSubmitting
         } } = useForm<ResetPasswordInputs>()
 
     const [success, setSuccess] = useState(false)
-    const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 
-    const onSubmit = (data: ResetPasswordInputs) => {
-        console.log(data);
-        setLoading(true)
-        const timer = setTimeout(() => {
-            console.log("Submitted! ", data);
-            setSuccess(true)
-            setLoading(false)
-        }, 1000);
+    const onSubmit = async (data: ResetPasswordInputs) => {
 
-        return () => clearTimeout(timer)
+        try {
+            const res = await axios.post("http://localhost:5000/api/mock", data);
+            console.log(res.data);
+            if (res.data) {
+                console.log("Mock API call successful:", res.data);
+                setSuccess(true);
+            } else {
+                console.log("Mock API call failed");
+            }
+
+        } catch (error) {
+            console.error("Error resetting password:", error);
+        }
+
     }
 
     useEffect(() => {
         if (success) {
             const timer = setTimeout(() => {
-                navigate("/")
+                // navigate("/")
+                setSuccess(false)
             }, 2500);
             return () => clearTimeout(timer)
         }
@@ -75,7 +82,11 @@ const StepResetPassword = () => {
                                 <input
                                     type="password"
                                     placeholder="Please enter new password"
-                                    {...register("password", { required: "Password is required" })}
+                                    autoComplete={"off"}
+                                    {...register("password", {
+                                        required: "Password is required",
+                                        minLength: { value: 6, message: "Password must be at least 6 characters long" }
+                                    })}
                                     className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 />
                                 <AnimatePresence mode="wait" key={'password'}>
@@ -91,7 +102,11 @@ const StepResetPassword = () => {
                                 <input
                                     type="password"
                                     placeholder="Please enter new password"
-                                    {...register("confirmPassword", { required: "Confirm Password is required" })}
+                                    autoComplete={"off"}
+                                    {...register("confirmPassword", {
+                                        required: "Confirm Password is required",
+                                        validate: (value, formValues) => value === formValues.password || "Passwords do not match"
+                                    })}
                                     className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 />
 
@@ -103,7 +118,7 @@ const StepResetPassword = () => {
                             </div>
 
                             <Button type="submit" size={"lg"} className="text-sm w-full">
-                                {loading ? <LoadingButton /> : "Reset Password"}
+                                {isSubmitting ? <LoadingButton /> : "Reset Password"}
                             </Button>
                         </form>
                     )
