@@ -21,11 +21,13 @@ const itemVariants = {
     show: { opacity: 1, y: 0, transition: { duration: 0.3 } },
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 const ChatList = ({ chatList, loading, onSelectChat }: { chatList: ChatItemInterface[]; loading: boolean; onSelectChat: (id: string) => void }) => {
     const [searchTerm, setSearchTerm] = useState<string>("")
     const [isSearching, setIsSearching] = useState<boolean>(false)
     const [searchedItems, setSearchedItems] = useState<ChatItemInterface[]>([])
+    // 
+    console.log(onSelectChat);
 
 
     return (

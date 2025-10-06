@@ -5,6 +5,8 @@ type Props = {
 }
 
 const ChatWindow = ({ conversationId, onBack, onShowInfo }: Props) => {
+    console.log(conversationId);
+
     return (
         <div className="border-r border-gray-800 bg-white">
             hello

@@ -11,8 +11,9 @@ const Home = () => {
     const [loading, setLoading] = useState<boolean>(true)
     const [activeChat, setActiveChat] = useState<string | null>("null")
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     const [mobileView, setMobileView] = useState<"chatList" | "chatWindow" | "chatInfo">("chatList")
+    console.log(mobileView);
 
     useEffect(() => {
         setTimeout(() => {
