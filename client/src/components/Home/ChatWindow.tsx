@@ -6,7 +6,7 @@ type Props = {
 
 const ChatWindow = ({ conversationId, onBack, onShowInfo }: Props) => {
     return (
-        <div className="border-r border-gray-800 flex-1">
+        <div className="border-r border-gray-800 bg-white">
             hello
             <button onClick={onBack}>Back</button>
             <button onClick={onShowInfo}>Show Info</button>
