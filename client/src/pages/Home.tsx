@@ -2,15 +2,16 @@ import ChatInfo from "@/components/Home/ChatInfo"
 import ChatList from "@/components/Home/ChatList"
 import ChatWindow from "@/components/Home/ChatWindow"
 import { dummyChats } from "@/data/data"
-import type { ChatItem } from "@/types/chat"
+import type { ChatItemInterface } from "@/types/chat"
 import { useEffect, useState } from "react"
 import { Helmet } from "react-helmet"
 
 const Home = () => {
-    const [chatList, setChatList] = useState<ChatItem[]>([])
+    const [chatList, setChatList] = useState<ChatItemInterface[]>([])
     const [loading, setLoading] = useState<boolean>(true)
     const [activeChat, setActiveChat] = useState<string | null>("null")
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [mobileView, setMobileView] = useState<"chatList" | "chatWindow" | "chatInfo">("chatList")
 
     useEffect(() => {

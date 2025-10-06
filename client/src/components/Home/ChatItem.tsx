@@ -3,7 +3,8 @@ import { Avatar, AvatarImage } from "../ui/avatar"
 
 const ChatItem = ({ chat }: { chat: ChatItemInterface }) => {
     return (
-        <button className="flex items-center gap-3 w-full rounded-lg p-2 text-left hover:bg-slate-200 cursor-pointer transition-all">
+        <button
+            className="flex items-center gap-3 w-full rounded-lg p-2 text-left hover:bg-slate-200 cursor-pointer transition-all">
             <Avatar className="w-10 h-10">
                 <AvatarImage src={chat.avatar} />
             </Avatar>
@@ -15,6 +16,7 @@ const ChatItem = ({ chat }: { chat: ChatItemInterface }) => {
                 </p>
             </div>
         </button>
+
     )
 }
 

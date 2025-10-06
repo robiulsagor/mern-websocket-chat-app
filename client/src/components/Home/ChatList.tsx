@@ -1,10 +1,27 @@
 import { CircleUser } from "lucide-react"
 import { ScrollArea } from "../ui/scroll-area"
-import SearchMessage from "./SearchMessage"
-import type { ChatItemInterface } from "@/types/chat"
+import { motion } from "motion/react"
 import { useState } from "react"
 import ChatItem from "./ChatItem"
+import type { ChatItemInterface } from "@/types/chat"
+import SearchMessage from "./SearchMessage"
 
+const listVariants = {
+    hidden: { opacity: 0 },
+    show: {
+        opacity: 1,
+        transition: {
+            staggerChildren: .03, // delay between items
+        },
+    },
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+};
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ChatList = ({ chatList, loading, onSelectChat }: { chatList: ChatItemInterface[]; loading: boolean; onSelectChat: (id: string) => void }) => {
     const [searchTerm, setSearchTerm] = useState<string>("")
     const [isSearching, setIsSearching] = useState<boolean>(false)
@@ -23,13 +40,25 @@ const ChatList = ({ chatList, loading, onSelectChat }: { chatList: ChatItemInter
 
                 <ScrollArea className="h-[calc(100vh-150px)]">
                     <div className="space-y-2 p-2">
-                        {
-                            loading ? "Loading..." : isSearching ? "Searching..." : searchTerm && searchedItems.length === 0 ? "No results found" : searchedItems.length > 0 ? searchedItems.map(chat => (
-                                <ChatItem key={chat.id} chat={chat} />
-                            )) : chatList.length === 0 ? "No chats available" : chatList.map(chat => (
-                                <ChatItem key={chat.id} chat={chat} />
-                            ))
-                        }
+                        <motion.div
+                            key={isSearching ? "searching" : "default"}
+                            variants={listVariants}
+                            initial="hidden"
+                            animate="show"
+                            className="flex flex-col"
+                        >
+                            {
+                                loading ? "Loading..." : isSearching ? "Searching..." : searchTerm && searchedItems.length === 0 ? "No results found" : searchedItems.length > 0 ? searchedItems.map(chat => (
+                                    <motion.div key={chat.id} variants={itemVariants}>
+                                        <ChatItem chat={chat} />
+                                    </motion.div>
+                                )) : chatList.length === 0 ? "No chats available" : chatList.map(chat => (
+                                    <motion.div key={chat.id} variants={itemVariants}>
+                                        <ChatItem chat={chat} />
+                                    </motion.div>
+                                ))
+                            }
+                        </motion.div>
                     </div>
                 </ScrollArea>
 
